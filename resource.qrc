@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>month.png</file>
+        <file>year.png</file>
+        <file>group.png</file>
+        <file>Delete.png</file>
+        <file>Sync.png</file>
+        <file>inglese.png</file>
+        <file>italiano.png</file>
+        <file>app_logo.png</file>
+    </qresource>
+    <qresource prefix="/translations">
+        <file>Cash_Register_en_150.qm</file>
+        <file>Cash_Register_it_IT.qm</file>
+    </qresource>
+</RCC>

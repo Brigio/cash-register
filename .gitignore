@@ -1,0 +1,17 @@
+# Build
+/build/
+/build-*/
+/CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+
+# Qt Creator
+*.user
+.qtcreator/
+
+# Backup / temp
+*~
+*.swp
+
+# Binary
+Cash_Register
