@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.16)
 
 project(Cash_Register
-    VERSION 0.3
+    VERSION 0.3.1
     LANGUAGES CXX
 )
 

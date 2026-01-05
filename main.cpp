@@ -1,5 +1,6 @@
 #include "registerwindow.h"
 #include <QApplication>
+#include <QCoreApplication>
 
 bool inizializzaDatabase();
 
@@ -7,8 +8,8 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    QCoreApplication::setOrganizationName("Franco");
-    QCoreApplication::setApplicationName("Cash_Register");
+    QCoreApplication::setOrganizationName("Brigio");
+    QCoreApplication::setApplicationName("cash-register");
 
     MainWindow w;
     w.show();
