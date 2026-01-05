@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Cash Register
+Comment=Cash register application
+Exec=Cash_Register
+Icon=cash-register
+Terminal=false
+Categories=Office;Finance;
+StartupNotify=true

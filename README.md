@@ -3,6 +3,8 @@
 Cash Register is a Qt6-based desktop application for managing basic cash register
 operations, sales and transactions.
 
+<img src="docs/screenshot.png" alt="Cash Register screenshot" width="900">
+
 ## Features
 
 - Simple cash register management

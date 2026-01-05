@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>cash-register.desktop</id>
+
+  <name>Cash Register</name>
+  <summary>Cash register application</summary>
+
+  <description>
+    <p>
+      Cash Register is a Qt-based desktop application for managing sales,
+      transactions and basic cash register operations.
+    </p>
+  </description>
+
+  <categories>
+    <category>Office</category>
+    <category>Finance</category>
+  </categories>
+
+  <launchable type="desktop-id">cash-register.desktop</launchable>
+
+  <developer_name>Franco Brigiotti</developer_name>
+
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+</component>
