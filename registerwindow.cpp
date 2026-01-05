@@ -11,6 +11,9 @@
 
 #include <QTranslator>
 
+#include <QStandardPaths>
+#include <QDir>
+
 //Controllo del formato euro lndImporto
 #include <QRegularExpressionValidator>
 
@@ -703,8 +706,12 @@ void MainWindow::on_actionAbout_triggered()
 //========================================================================================
 bool MainWindow::inizializzaDatabase()
 {
-    QString exePath = QCoreApplication::applicationDirPath();
-    QString dbPath = exePath + "/cassa.db";
+    QString dataDir =
+        QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+
+    QDir().mkpath(dataDir);  // crea la directory se non esiste
+
+    QString dbPath = dataDir + "/cassa.db";
 
     bool esisteDB = QFile::exists(dbPath);
 
@@ -712,7 +719,12 @@ bool MainWindow::inizializzaDatabase()
     sqlitedb.setDatabaseName(dbPath);
 
     if (!sqlitedb.open()) {
-        QMessageBox::warning(this, tr("Errore DB"), tr("Impossibile aprire il database."));
+        QMessageBox::warning(
+            this,
+            tr("Errore DB"),
+            tr("Impossibile aprire il database:\n%1")
+                .arg(sqlitedb.lastError().text())
+            );
         return false;
     }
 
@@ -728,7 +740,12 @@ bool MainWindow::inizializzaDatabase()
             ");";
 
         if (!query.exec(createTable)) {
-            QMessageBox::warning(this, tr("Errore"), tr("Impossibile creare la tabella."));
+            QMessageBox::warning(
+                this,
+                tr("Errore"),
+                tr("Impossibile creare la tabella:\n%1")
+                    .arg(query.lastError().text())
+                );
             return false;
         }
     }
