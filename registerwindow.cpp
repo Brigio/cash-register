@@ -13,6 +13,7 @@
 
 #include <QStandardPaths>
 #include <QDir>
+#include <QSqlError>
 
 //Controllo del formato euro lndImporto
 #include <QRegularExpressionValidator>
@@ -706,25 +707,29 @@ void MainWindow::on_actionAbout_triggered()
 //========================================================================================
 bool MainWindow::inizializzaDatabase()
 {
-    QString dataDir =
-        QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+   // QString exePath = QCoreApplication::applicationDirPath();
+   // QString dbPath = exePath + "/cassa.db";
 
-    QDir().mkpath(dataDir);  // crea la directory se non esiste
+   //PATH: ~/.local/share/Brigio/cash-register/cassa.db
+   //                  OR
+   //$XDG_DATA_HOME/Brigio/cash-register/cassa.db
+   QString dataPath = QStandardPaths::writableLocation(
+       QStandardPaths::AppDataLocation
+       );
 
-    QString dbPath = dataDir + "/cassa.db";
+   QDir dir;
+   if (!dir.exists(dataPath))
+       dir.mkpath(dataPath);
 
-    bool esisteDB = QFile::exists(dbPath);
+   QString dbPath = dataPath + "/cassa.db";
+
+   bool esisteDB = QFile::exists(dbPath);
 
     sqlitedb = QSqlDatabase::addDatabase("QSQLITE");
     sqlitedb.setDatabaseName(dbPath);
 
     if (!sqlitedb.open()) {
-        QMessageBox::warning(
-            this,
-            tr("Errore DB"),
-            tr("Impossibile aprire il database:\n%1")
-                .arg(sqlitedb.lastError().text())
-            );
+        QMessageBox::warning(this, tr("Errore DB"), tr("Impossibile aprire il database."));
         return false;
     }
 
@@ -740,12 +745,7 @@ bool MainWindow::inizializzaDatabase()
             ");";
 
         if (!query.exec(createTable)) {
-            QMessageBox::warning(
-                this,
-                tr("Errore"),
-                tr("Impossibile creare la tabella:\n%1")
-                    .arg(query.lastError().text())
-                );
+            QMessageBox::warning(this, tr("Errore"), tr("Impossibile creare la tabella."));
             return false;
         }
     }

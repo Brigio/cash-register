@@ -1,6 +1,6 @@
-#include "registerwindow.h"
 #include <QApplication>
 #include <QCoreApplication>
+#include "registerwindow.h"
 
 bool inizializzaDatabase();
 
